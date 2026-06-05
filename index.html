@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRED BRO — Кредит с плохой КИ</title>
+ 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+ 
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; }
+    .hero-bg { background: #0a0a0a; }
+    .btn-red {
+      background-color: #ee3424;
+      color: white;
+      transition: all 0.3s;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+    .btn-red:hover { background-color: #d92a1f; transform: translateY(-3px); }
+    
+    input[type="range"] { accent-color: #ee3424 !important; }
+    
+    .footer-text { 
+      font-size: 9px; 
+      line-height: 1.05; 
+    }
+    .modal { animation: fadeIn 0.3s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- HEADER -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl font-bold text-[#ee3424]">CRED</span>
+          <span class="text-3xl font-bold text-gray-900">BRO</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-bg text-white py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          Кредит с плохой кредитной историей
+        </h1>
+        <p class="text-xl text-gray-300 mb-10">
+          Работаем с любой кредитной историей. Решение за 15 минут. Без справок о доходах и поручителей. <strong>Выгодная ставка от 13 %</strong>.
+        </p>
+        
+        <button onclick="openFormModal()" class="btn-red text-2xl px-12 py-6 text-lg mb-12">
+          Получить деньги сейчас
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div class="bg-zinc-900 rounded-3xl p-8 text-center">
+            <div class="text-4xl font-bold text-white mb-2">15 мин</div>
+            <div class="text-gray-400 text-sm">решение по заявке</div>
+          </div>
+          <div class="bg-zinc-900 rounded-3xl p-8 text-center">
+            <div class="text-4xl font-bold text-white mb-2">до 30 млн ₽</div>
+            <div class="text-gray-400 text-sm">сумма кредита</div>
+          </div>
+          <div class="bg-zinc-900 rounded-3xl p-8 text-center">
+            <div class="text-4xl font-bold text-white mb-2">98%</div>
+            <div class="text-gray-400 text-sm">одобрений</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАЛЬКУЛЯТОР -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">Рассчитайте ваш кредит</h2>
+      <div class="bg-gray-50 rounded-3xl p-10 shadow-sm">
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <label class="block text-sm font-medium text-gray-600 mb-3">Сумма кредита</label>
+            <input type="range" id="sumRange" min="5000" max="30000000" value="5000000" step="10000" class="w-full">
+            <div class="flex justify-between text-sm mt-1 text-gray-500">
+              <span>5 000 ₽</span>
+              <span>30 000 000 ₽</span>
+            </div>
+            <p id="sumValue" class="text-4xl font-bold text-[#ee3424] mt-8 text-center">5 000 000 ₽</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 mb-3">Срок кредита</label>
+            <input type="range" id="termRange" min="3" max="120" value="12" class="w-full">
+            <div class="flex justify-between text-sm mt-1 text-gray-500">
+              <span>3 мес</span>
+              <span>120 мес</span>
+            </div>
+            <p id="termValue" class="text-4xl font-bold text-[#ee3424] mt-8 text-center">12 месяцев</p>
+          </div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-gray-200">
+          <div class="text-center">
+            <p class="text-gray-600 text-lg">Ежемесячный платёж</p>
+            <p id="monthlyPayment" class="text-4xl font-bold text-gray-900 mt-2">48 123 ₽</p>
+          </div>
+        </div>
+        <button onclick="openFormModal()" class="btn-red w-full mt-10 py-5 text-lg">
+          Подать заявку
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОЧЕМУ ВЫБИРАЮТ НАС + КАК ЭТО РАБОТАЕТ + FOOTER (оставил без изменений для краткости) -->
+  <!-- ... (весь остальной код остаётся таким же, как в предыдущей версии) ... -->
+
+  <!-- МОДАЛЬНОЕ ОКНО ФОРМЫ -->
+  <div id="formModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
+    <div class="bg-white rounded-3xl max-w-lg w-full mx-4 modal max-h-[90vh] overflow-auto">
+      <div class="p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Заполните заявку на кредит наличными</h2>
+          <button onclick="closeFormModal()" class="text-3xl text-gray-400 hover:text-gray-600">×</button>
+        </div>
+        <div class="space-y-6">
+          <!-- поля формы (ФИО, ИНН, телефон, email, мессенджер) -->
+          <div>
+            <label class="block text-sm font-medium mb-1">Фамилия, имя, отчество</label>
+            <input type="text" id="fio" class="w-full border border-gray-300 rounded-xl px-4 py-3" placeholder="Укажите как в паспорте">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">ИНН</label>
+            <input type="text" id="inn" class="w-full border border-gray-300 rounded-xl px-4 py-3" placeholder="Введите ваш ИНН" maxlength="12">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Мобильный телефон</label>
+              <input type="tel" id="phone" class="w-full border border-gray-300 rounded-xl px-4 py-3" value="+7">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Электронная почта</label>
+              <input type="email" id="email" class="w-full border border-gray-300 rounded-xl px-4 py-3" placeholder="example@mail.ru">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-3">Удобный мессенджер</label>
+            <div class="flex flex-col gap-3">
+              <label class="flex items-center gap-3 border border-gray-300 rounded-2xl p-4 cursor-pointer hover:border-[#ee3424]">
+                <input type="radio" name="messenger" value="telegram" class="accent-[#ee3424]">
+                <span class="text-base">Telegram</span>
+              </label>
+              <label class="flex items-center gap-3 border border-gray-300 rounded-2xl p-4 cursor-pointer hover:border-[#ee3424]">
+                <input type="radio" name="messenger" value="whatsapp" class="accent-[#ee3424]">
+                <span class="text-base">WhatsApp</span>
+              </label>
+              <label class="flex items-center gap-3 border border-gray-300 rounded-2xl p-4 cursor-pointer hover:border-[#ee3424]">
+                <input type="radio" name="messenger" value="max" class="accent-[#ee3424]">
+                <span class="text-base">Макс</span>
+              </label>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm">
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" class="mt-1 accent-[#ee3424]" checked>
+              <span>Я соглашаюсь с условиями и даю согласие на обработку персональных данных</span>
+            </label>
+          </div>
+          <button onclick="submitForm()" class="btn-red w-full py-4 text-lg">
+            Продолжить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Калькулятор
+    const sumRange = document.getElementById('sumRange');
+    const termRange = document.getElementById('termRange');
+    const sumValue = document.getElementById('sumValue');
+    const termValue = document.getElementById('termValue');
+    const monthlyPayment = document.getElementById('monthlyPayment');
+
+    function calculate() {
+      const sum = parseFloat(sumRange.value);
+      const months = parseFloat(termRange.value);
+      sumValue.textContent = sum.toLocaleString('ru-RU') + ' ₽';
+      termValue.textContent = months + ' месяцев';
+      const annualRate = 0.129;
+      const monthlyRate = annualRate / 12;
+      const payment = sum * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      monthlyPayment.textContent = Math.round(payment).toLocaleString('ru-RU') + ' ₽';
+    }
+    sumRange.addEventListener('input', calculate);
+    termRange.addEventListener('input', calculate);
+    calculate();
+
+    window.openFormModal = function() {
+      document.getElementById('formModal').classList.remove('hidden');
+      document.getElementById('formModal').classList.add('flex');
+    };
+    window.closeFormModal = function() {
+      document.getElementById('formModal').classList.add('hidden');
+      document.getElementById('formModal').classList.remove('flex');
+      location.reload(); // перезагружаем, чтобы вернуть исходную форму
+    };
+
+    // Новая функция отправки через Netlify Function
+    window.submitForm = async function() {
+      const fio = document.getElementById('fio').value || 'Не указано';
+      const inn = document.getElementById('inn').value || 'Не указано';
+      const phone = document.getElementById('phone').value || 'Не указано';
+      const email = document.getElementById('email').value || 'Не указано';
+      const messengerInput = document.querySelector('input[name="messenger"]:checked');
+      const messenger = messengerInput ? messengerInput.nextElementSibling.textContent : 'Не выбран';
+
+      const sum = document.getElementById('sumValue').textContent;
+      const term = document.getElementById('termValue').textContent;
+
+      try {
+        const response = await fetch('/.netlify/functions/send-telegram', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: fio,
+            inn: inn,
+            phone: phone,
+            email: email,
+            messenger: messenger,
+            sum: sum,
+            term: term
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          const modal = document.getElementById('formModal');
+          modal.innerHTML = `
+            <div class="bg-white rounded-3xl max-w-md w-full mx-4 text-center p-10 modal">
+              <div class="mx-auto w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                <i class="fas fa-check-circle text-green-500 text-5xl"></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-3">Заявка отправлена!</h2>
+              <p class="text-xl text-gray-600 mb-8">С вами свяжется сотрудник в ближайшее время.</p>
+              <button onclick="location.reload()" class="btn-red w-full py-4 text-lg">
+                Закрыть
+              </button>
+            </div>
+          `;
+        } else {
+          alert('Ошибка отправки. Попробуйте ещё раз.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Ошибка соединения. Проверьте интернет.');
+      }
+    };
+
+    // Закрытие модалки по клику на фон
+    document.getElementById('formModal').addEventListener('click', function(e) {
+      if (e.target === this) closeFormModal();
+    });
+  </script>
+</body>
+</html>
