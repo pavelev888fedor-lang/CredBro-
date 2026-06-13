@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRED BRO — Кредит с плохой КИ</title>
- 
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
- 
+  <script>
+    tailwind.config = {
+      content: [],
+      theme: { extend: {} }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     body { font-family: 'Segoe UI', system-ui, sans-serif; }
     .hero-bg { background: #0a0a0a; }
@@ -19,15 +25,8 @@
       font-weight: 700;
     }
     .btn-red:hover { background-color: #d92a1f; transform: translateY(-3px); }
-    
-    input[type="range"] { accent-color: #ee3424 !important; }
-    
-    .footer-text { 
-      font-size: 9px; 
-      line-height: 1.05; 
-    }
-    .modal { animation: fadeIn 0.3s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    input[type="range"] { accent-color: #ee3424; }
+    .footer-text { font-size: 7px; line-height: 1.1; }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -45,73 +44,56 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero-bg text-white py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Кредит с плохой кредитной историей
-        </h1>
-        <p class="text-xl text-gray-300 mb-10">
-          Работаем с любой кредитной историей. Решение за 15 минут. Без справок о доходах и поручителей. <strong>Выгодная ставка от 13 %</strong>.
-        </p>
-        
-        <button onclick="openFormModal()" class="btn-red text-2xl px-12 py-6 text-lg mb-12">
-          Получить деньги сейчас
-        </button>
-
-        <!-- Три карточки -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div class="bg-zinc-900 rounded-3xl p-8 text-center">
-            <div class="text-4xl font-bold text-white mb-2">15 мин</div>
-            <div class="text-gray-400 text-sm">решение по заявке</div>
-          </div>
-          
-          <div class="bg-zinc-900 rounded-3xl p-8 text-center">
-            <div class="text-4xl font-bold text-white mb-2">до 30 млн ₽</div>
-            <div class="text-gray-400 text-sm">сумма кредита</div>
-          </div>
-          
-          <div class="bg-zinc-900 rounded-3xl p-8 text-center">
-            <div class="text-4xl font-bold text-white mb-2">98%</div>
-            <div class="text-gray-400 text-sm">одобрений</div>
-          </div>
-        </div>
+  <section class="hero-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="inline-block bg-[#ee3424] text-white px-6 py-2 rounded-full text-sm font-semibold mb-6">
+        С ПЛОХОЙ КИ РАБОТАЕМ
       </div>
+      <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+        Кредит с плохой<br>кредитной историей
+      </h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+        Работаем с любой кредитной историей. Решение за 15 минут.<br>
+        Без залога и справок о доходах. Ставка от 13%.
+      </p>
+      <button onclick="openFormModal()" class="btn-red text-xl px-10 py-4">
+        Подать заявку сейчас
+      </button>
     </div>
   </section>
 
   <!-- КАЛЬКУЛЯТОР -->
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12">Рассчитайте ваш кредит</h2>
+      <h2 class="text-4xl font-bold text-center mb-10">Рассчитайте ваш кредит</h2>
       <div class="bg-gray-50 rounded-3xl p-10 shadow-sm">
-        <div class="grid md:grid-cols-2 gap-12">
+        <div class="grid md:grid-cols-2 gap-10">
           <div>
-            <label class="block text-sm font-medium text-gray-600 mb-3">Сумма кредита</label>
+            <label class="block text-sm font-medium text-gray-600 mb-2">Сумма кредита</label>
             <input type="range" id="sumRange" min="5000" max="30000000" value="5000000" step="10000" class="w-full">
-            <div class="flex justify-between text-sm mt-1 text-gray-500">
+            <div class="flex justify-between text-sm text-gray-500 mt-1">
               <span>5 000 ₽</span>
               <span>30 000 000 ₽</span>
             </div>
-            <p id="sumValue" class="text-4xl font-bold text-[#ee3424] mt-8 text-center">5 000 000 ₽</p>
+            <p id="sumValue" class="text-4xl font-bold text-[#ee3424] mt-6 text-center">5 000 000 ₽</p>
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-600 mb-3">Срок кредита</label>
-            <input type="range" id="termRange" min="3" max="120" value="12" class="w-full">
-            <div class="flex justify-between text-sm mt-1 text-gray-500">
+            <label class="block text-sm font-medium text-gray-600 mb-2">Срок кредита</label>
+            <input type="range" id="termRange" min="3" max="120" value="12" step="1" class="w-full">
+            <div class="flex justify-between text-sm text-gray-500 mt-1">
               <span>3 мес</span>
               <span>120 мес</span>
             </div>
-            <p id="termValue" class="text-4xl font-bold text-[#ee3424] mt-8 text-center">12 месяцев</p>
+            <p id="termValue" class="text-4xl font-bold text-[#ee3424] mt-6 text-center">12 месяцев</p>
           </div>
         </div>
-        <div class="mt-12 pt-8 border-t border-gray-200">
-          <div class="text-center">
-            <p class="text-gray-600 text-lg">Ежемесячный платёж</p>
-            <p id="monthlyPayment" class="text-4xl font-bold text-gray-900 mt-2">48 123 ₽</p>
-          </div>
+
+        <div class="mt-10 pt-8 border-t border-gray-200 text-center">
+          <p class="text-gray-600">Ежемесячный платёж</p>
+          <p id="monthlyPayment" class="text-5xl font-bold text-gray-900 mt-2">48 123 ₽</p>
         </div>
-        <button onclick="openFormModal()" class="btn-red w-full mt-10 py-5 text-lg">
+
+        <button onclick="openFormModal()" class="btn-red w-full mt-10 py-4 text-lg">
           Подать заявку
         </button>
       </div>
@@ -119,236 +101,146 @@
   </section>
 
   <!-- ПОЧЕМУ ВЫБИРАЮТ НАС -->
-  <section class="py-20 bg-gray-50">
+  <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-16">Почему выбирают нас</h2>
+      <h2 class="text-4xl font-bold text-center mb-12">Почему выбирают нас</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-3xl card-hover border border-gray-100 text-center">
-          <div class="text-[#ee3424] text-5xl mb-6 flex justify-center"><i class="fas fa-handshake"></i></div>
+        <div class="bg-white p-8 rounded-3xl shadow-sm text-center">
+          <div class="text-[#ee3424] text-5xl mb-6"><i class="fas fa-handshake"></i></div>
           <h3 class="text-2xl font-semibold mb-3">Без залога и поручителей</h3>
-          <p class="text-gray-600">Не требуем обеспечения по кредиту.<br>Работаем напрямую с банками по лучшим условиям.</p>
+          <p class="text-gray-600">Не требуем никакого обеспечения.</p>
         </div>
-        <div class="bg-white p-8 rounded-3xl card-hover border border-gray-100 text-center">
-          <div class="text-[#ee3424] text-5xl mb-6 flex justify-center"><i class="fas fa-file-alt"></i></div>
+        <div class="bg-white p-8 rounded-3xl shadow-sm text-center">
+          <div class="text-[#ee3424] text-5xl mb-6"><i class="fas fa-file-alt"></i></div>
           <h3 class="text-2xl font-semibold mb-3">Без справок о доходах</h3>
-          <p class="text-gray-600">Не нужны 2-НДФЛ и другие документы.<br>Рассматриваем заявки с любой кредитной историей.</p>
+          <p class="text-gray-600">Рассматриваем заявки без 2-НДФЛ.</p>
         </div>
-        <div class="bg-white p-8 rounded-3xl card-hover border border-gray-100 text-center">
-          <div class="text-[#ee3424] text-5xl mb-6 flex justify-center"><i class="fas fa-laptop"></i></div>
-          <h3 class="text-2xl font-semibold mb-3">Выдача онлайн</h3>
-          <p class="text-gray-600">Оформление без визита в банк.<br>Срок от 12 до 72 месяцев. Досрочное погашение без штрафов.</p>
+        <div class="bg-white p-8 rounded-3xl shadow-sm text-center">
+          <div class="text-[#ee3424] text-5xl mb-6"><i class="fas fa-clock"></i></div>
+          <h3 class="text-2xl font-semibold mb-3">Быстрое решение</h3>
+          <p class="text-gray-600">Предварительное одобрение за 15 минут.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- КАК ЭТО РАБОТАЕТ -->
-  <section class="py-20 bg-white">
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-16">Как это работает</h2>
+      <h2 class="text-4xl font-bold text-center mb-12">Как это работает</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl text-center">
-          <div class="text-[#ee3424] font-bold text-3xl mb-4">ШАГ 1</div>
-          <h3 class="text-2xl font-semibold mb-3">Заявка</h3>
-          <p class="text-gray-600">Оставьте заявку на сайте — укажите сумму и контакты. Мы свяжемся с вами.</p>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#ee3424] text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4">1</div>
+          <h3 class="text-xl font-semibold mb-3">Оставляете заявку</h3>
+          <p class="text-gray-600">Заполняете простую форму на сайте</p>
         </div>
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl text-center">
-          <div class="text-[#ee3424] font-bold text-3xl mb-4">ШАГ 2</div>
-          <h3 class="text-2xl font-semibold mb-3">Анализ</h3>
-          <p class="text-gray-600">Анализируем вашу ситуацию и подбираем лучшие условия.</p>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#ee3424] text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4">2</div>
+          <h3 class="text-xl font-semibold mb-3">Мы подбираем варианты</h3>
+          <p class="text-gray-600">Анализируем вашу ситуацию</p>
         </div>
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl text-center">
-          <div class="text-[#ee3424] font-bold text-3xl mb-4">ШАГ 3</div>
-          <h3 class="text-2xl font-semibold mb-3">Решение</h3>
-          <p class="text-gray-600">Получаете решение и инструкцию по оформлению.</p>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#ee3424] text-white rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4">3</div>
+          <h3 class="text-xl font-semibold mb-3">Получаете деньги</h3>
+          <p class="text-gray-600">Деньги на карту или наличными</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-[#0a0a0a] text-gray-400 py-12">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-white text-3xl font-bold mb-8">CRED BRO</h2>
-      <div class="footer-text max-w-4xl mx-auto text-left space-y-0">
-        <p><strong>Условия получения кредита:</strong></p>
-        <p>Сумма кредита: 100 000 – 30 000 000 руб.</p>
-        <p>Процентная ставка по ФЗ №353-ФЗ: 6,5%–16%. Финальные условия предоставляются кредитором индивидуально.</p>
-        <p>Неустойка — 0,10% в день от суммы просрочки (не более 10%). При задержке платежей информация может быть передана в реестр должников или коллекторскому агентству.</p>
-        <p>Срок кредита: 65 дней – 5 лет. Возможно продление и досрочное погашение.</p>
-        <p>Сервис не является банком или МФО. Мы подбираем предложения кредиторов, имеющих право работать по ФЗ «О потребительском кредите (займе)» №353-ФЗ.</p>
-        <p>Заявка может быть направлена в банки-партнёры: АО «Тинькофф Банк», ПАО «Совкомбанк», АО «ОТП Банк», АО КБ «Ситибанк», ПАО «СКБ-банк» и другие. Лицензии партнёров: №1481, №2673, №1326, №1460, №3251, №3354 и др.</p>
+  <footer class="bg-[#0a0a0a] text-gray-400 py-10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="footer-text text-[7px] leading-tight text-left space-y-2">
+        <p><strong>Переплата по кредиту за 12 месяцев - от 5,5% до 16,7%.</strong></p>
+        <p>Пример расчета: Сумма 200 000 рублей, срок 12 месяцев, ежемесячный платеж 17 606 рубля, переплата по процентам за кредит 11 277 рублей, общая сумма кредита с переплатой по процентам 211 278 рублей.</p>
+        <p>Срок кредитования от 60 дней до 15 лет.</p>
+        <p>Официальный партнер Банков, предоставляющих кредиты на основании законодательства РФ.</p>
+        <p>Лицензии: Райффайзенбанк № 4735, ЮниКредит Банк № 1, Совкомбанк № 756, Почта Банк № 740, Связь-Банк № 1945, ВТБ № 978, Сбербанк России № 2984, Газпромбанк № 367, Альфа-Банк № 2635, Россельхозбанк № 2987, Московский кредитный банк № 1998.</p>
       </div>
-      <div class="mt-8 pt-6 border-t border-gray-800 text-[10px] text-gray-500">
+      
+      <div class="mt-6 text-center text-[8px] text-gray-500">
         © 2026 CredBro
       </div>
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО ФОРМЫ -->
+  <!-- МОДАЛЬНОЕ ОКНО -->
   <div id="formModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
-    <div class="bg-white rounded-3xl max-w-lg w-full mx-4 modal max-h-[90vh] overflow-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full mx-4">
       <div class="p-8">
         <div class="flex justify-between items-center mb-6">
-          <h2 class="text-2xl font-bold">Заполните заявку на кредит наличными</h2>
+          <h2 class="text-2xl font-bold">Заполните заявку</h2>
           <button onclick="closeFormModal()" class="text-3xl text-gray-400 hover:text-gray-600">×</button>
         </div>
-        <div class="space-y-6">
-          <div>
-            <label class="block text-sm font-medium mb-1">Сумма</label>
-            <input type="text" class="w-full border border-gray-300 rounded-xl px-4 py-3" value="5 000 000 ₽">
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1">Срок</label>
-            <select class="w-full border border-gray-300 rounded-xl px-4 py-3">
-              <option>12 месяцев</option>
-              <option>24 месяца</option>
-              <option>36 месяцев</option>
-              <option>60 месяцев</option>
-              <option>120 месяцев</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1">Фамилия, имя, отчество</label>
-            <input type="text" id="fio" class="w-full border border-gray-300 rounded-xl px-4 py-3" placeholder="Укажите как в паспорте">
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1">ИНН</label>
-            <input type="text" id="inn" class="w-full border border-gray-300 rounded-xl px-4 py-3" placeholder="Введите ваш ИНН" maxlength="12">
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium mb-1">Мобильный телефон</label>
-              <input type="tel" id="phone" class="w-full border border-gray-300 rounded-xl px-4 py-3" value="+7">
-            </div>
-            <div>
-              <label class="block text-sm font-medium mb-1">Электронная почта</label>
-              <input type="email" id="email" class="w-full border border-gray-300 rounded-xl px-4 py-3" placeholder="example@mail.ru">
-            </div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-3">Удобный мессенджер</label>
-            <div class="flex flex-col gap-3">
-              <label class="flex items-center gap-3 border border-gray-300 rounded-2xl p-4 cursor-pointer hover:border-[#ee3424]">
-                <input type="radio" name="messenger" value="telegram" class="accent-[#ee3424]">
-                <span class="text-base">Telegram</span>
-              </label>
-              <label class="flex items-center gap-3 border border-gray-300 rounded-2xl p-4 cursor-pointer hover:border-[#ee3424]">
-                <input type="radio" name="messenger" value="whatsapp" class="accent-[#ee3424]">
-                <span class="text-base">WhatsApp</span>
-              </label>
-              <label class="flex items-center gap-3 border border-gray-300 rounded-2xl p-4 cursor-pointer hover:border-[#ee3424]">
-                <input type="radio" name="messenger" value="max" class="accent-[#ee3424]">
-                <span class="text-base">Макс</span>
-              </label>
-            </div>
-          </div>
-          <div class="space-y-3 text-sm">
-            <label class="flex items-start gap-2 cursor-pointer">
-              <input type="checkbox" class="mt-1 accent-[#ee3424]" checked>
-              <span>Я соглашаюсь с условиями и даю согласие на обработку персональных данных</span>
-            </label>
-          </div>
-          <button onclick="submitForm()" class="btn-red w-full py-4 text-lg">
-            Продолжить
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- МОДАЛКА УСПЕХА -->
-  <div id="successModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[110]">
-    <div class="bg-white rounded-3xl max-w-md w-full mx-4 text-center p-10 modal">
-      <div class="mx-auto w-24 h-24 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-        <i class="fas fa-check-circle text-green-500 text-6xl"></i>
+        <form onsubmit="submitForm(event)">
+          <div class="space-y-5">
+            <div>
+              <label class="block text-sm font-medium mb-1">ФИО</label>
+              <input type="text" id="fio" class="w-full border border-gray-300 rounded-xl px-4 py-3" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">ИНН</label>
+              <input type="text" id="inn" class="w-full border border-gray-300 rounded-xl px-4 py-3" maxlength="12" required>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1">Телефон</label>
+                <input type="tel" id="phone" class="w-full border border-gray-300 rounded-xl px-4 py-3" value="+7" required>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1">Email</label>
+                <input type="email" id="email" class="w-full border border-gray-300 rounded-xl px-4 py-3" required>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-red w-full mt-8 py-4 text-lg">Отправить заявку</button>
+        </form>
       </div>
-      <h2 class="text-3xl font-bold text-gray-900 mb-3">Заявка отправлена!</h2>
-      <p class="text-xl text-gray-600 mb-8">Ваша заявка успешно отправлена.<br>С вами свяжется ваш сотрудник в ближайшее время.</p>
-      <button onclick="closeSuccessModal()" class="btn-red w-full py-5 text-lg">
-        Закрыть
-      </button>
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const sumRange = document.getElementById('sumRange');
-      const termRange = document.getElementById('termRange');
-      const sumValue = document.getElementById('sumValue');
-      const termValue = document.getElementById('termValue');
-      const monthlyPayment = document.getElementById('monthlyPayment');
+    const sumRange = document.getElementById('sumRange');
+    const termRange = document.getElementById('termRange');
+    const sumValue = document.getElementById('sumValue');
+    const termValue = document.getElementById('termValue');
+    const monthlyPayment = document.getElementById('monthlyPayment');
 
-      function calculate() {
-        const sum = parseFloat(sumRange.value);
-        const months = parseFloat(termRange.value);
-        sumValue.textContent = sum.toLocaleString('ru-RU') + ' ₽';
-        termValue.textContent = months + ' месяцев';
-        const annualRate = 0.129;
-        const monthlyRate = annualRate / 12;
-        const payment = sum * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-        monthlyPayment.textContent = Math.round(payment).toLocaleString('ru-RU') + ' ₽';
-      }
-      sumRange.addEventListener('input', calculate);
-      termRange.addEventListener('input', calculate);
-      calculate();
+    function calculate() {
+      const sum = parseFloat(sumRange.value);
+      const months = parseFloat(termRange.value);
+      sumValue.textContent = sum.toLocaleString('ru-RU') + ' ₽';
+      termValue.textContent = months + ' месяцев';
+      const annualRate = 0.129;
+      const monthlyRate = annualRate / 12;
+      const payment = sum * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      monthlyPayment.textContent = Math.round(payment).toLocaleString('ru-RU') + ' ₽';
+    }
 
-      window.openFormModal = function() {
-        document.getElementById('formModal').classList.remove('hidden');
-        document.getElementById('formModal').classList.add('flex');
-      };
-      window.closeFormModal = function() {
-        document.getElementById('formModal').classList.add('hidden');
-        document.getElementById('formModal').classList.remove('flex');
-      };
-      window.openSuccessModal = function() {
-        document.getElementById('successModal').classList.remove('hidden');
-        document.getElementById('successModal').classList.add('flex');
-      };
-      window.closeSuccessModal = function() {
-        document.getElementById('successModal').classList.add('hidden');
-        document.getElementById('successModal').classList.remove('flex');
-      };
+    sumRange.addEventListener('input', calculate);
+    termRange.addEventListener('input', calculate);
+    calculate();
 
-      const BOT_TOKEN = "8014133388:AAGYEJa9XWEEJtcZt62-bqufvye23Dx8KTI";
-      const CHAT_ID = "8707679315";
+    function openFormModal() {
+      document.getElementById('formModal').classList.remove('hidden');
+      document.getElementById('formModal').classList.add('flex');
+    }
 
-      window.submitForm = async function() {
-        const fio = document.getElementById('fio').value || 'Не указано';
-        const inn = document.getElementById('inn').value || 'Не указано';
-        const phone = document.getElementById('phone').value || 'Не указано';
-        const email = document.getElementById('email').value || 'Не указано';
-        const messengerInput = document.querySelector('input[name="messenger"]:checked');
-        const messenger = messengerInput ? messengerInput.nextElementSibling.textContent : 'Не выбран';
+    function closeFormModal() {
+      document.getElementById('formModal').classList.add('hidden');
+      document.getElementById('formModal').classList.remove('flex');
+    }
 
-        const text = `🚀 *Новая заявка CRED BRO*\n\n` +
-                     `👤 ФИО: ${fio}\n` +
-                     `📌 ИНН: ${inn}\n` +
-                     `📱 Телефон: ${phone}\n` +
-                     `✉️ Email: ${email}\n` +
-                     `💬 Мессенджер: ${messenger}\n` +
-                     `💰 Сумма: ${document.getElementById('sumValue').textContent}\n` +
-                     `⏳ Срок: ${document.getElementById('termValue').textContent}`;
+    async function submitForm(e) {
+      e.preventDefault();
+      alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+      closeFormModal();
+    }
 
-        try {
-          const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'Markdown' })
-          });
-          if (response.ok) {
-            closeFormModal();
-            setTimeout(openSuccessModal, 300);
-          }
-        } catch (e) {
-          console.error(e);
-          alert('Ошибка соединения');
-        }
-      };
-
-      document.getElementById('formModal').addEventListener('click', function(e) {
-        if (e.target === this) closeFormModal();
-      });
+    document.getElementById('formModal').addEventListener('click', function(e) {
+      if (e.target === this) closeFormModal();
     });
   </script>
 </body>
